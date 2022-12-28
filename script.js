@@ -144,11 +144,9 @@ class Snake {
     }
 
     check_tail_collision() {
-        this.tail.forEach( function( tail, index ) {
-            if( index > 0 ) {
-                if( tail.hits_snake() ) {
-                    this.game.game_over();
-                }
+        this.tail.forEach( function( tail ) {
+            if( tail.hits_snake() ) {
+                this.game.game_over();
             }
         }.bind( this ) );
     }
@@ -242,66 +240,15 @@ class Snake {
     change_angle( degrees ) {
         this.angle += degrees;
 
-        if( this.angle > 359 ) {
-            this.angle = 0;
-        }
-
-        if( this.angle < 0 ) {
-            this.angle = 359;
-        }
-
         this.element.css({
             transform: "rotate("+this.angle+"deg)"
         });
     }
 
     calculate_direction() {
-        let x_speed = this.speed;
-        let y_speed = this.speed;
-        let x_direction = 0;
-        let y_direction = 0;
-
-        if( this.angle >= 0 && this.angle <= 180 ) {
-            if( this.angle <= 90 ) {
-                let percentage = this.angle / 90;
-                x_speed = this.speed * percentage;
-            } else if( this.angle > 90 ) {
-                let percentage = ( this.angle - 90 ) / 90;
-                x_speed = this.speed * ( 1 - percentage );
-            }
-            x_direction = 1;
-        } else if( this.angle > 180 && this.angle < 360 ) {
-            if( this.angle <= 270 ) {
-                let percentage = ( this.angle - 180 ) / 90;
-                x_speed = this.speed * percentage;
-            } else if( this.angle > 270 ) {
-                let percentage = ( this.angle - 180 - 90 ) / 90;
-                x_speed = this.speed * ( 1 - percentage );
-            }
-            x_direction = -1;
-        }
-
-        if( this.angle >= 90 && this.angle < 270 ) {
-            if( this.angle <= 180 ) {
-                let percentage = ( this.angle - 90 ) / 90;
-                y_speed = this.speed * percentage;
-            } else if( this.angle > 180 ) {
-                let percentage = ( this.angle - 180 ) / 90;
-                y_speed = this.speed * ( 1 - percentage );
-            }
-            y_direction = 1;
-        } else if( this.angle >= 270 && this.angle < 360 ) {
-            let percentage = ( this.angle - 270 ) / 90;
-            y_speed = this.speed * percentage;
-            y_direction = -1;
-        } else if( this.angle >= 0 && this.angle < 90 ) {
-            let percentage = this.angle / 90;
-            y_speed = this.speed * ( 1 - percentage );
-            y_direction = -1;
-        }
-
-        this.x += x_speed * x_direction;
-        this.y += y_speed * y_direction;
+        let angle_in_radians = this.angle * ( Math.PI / 180 );
+        this.x += this.speed * Math.cos( angle_in_radians );
+        this.y += this.speed * Math.sin( angle_in_radians );
     }
 
     check_overflow() {

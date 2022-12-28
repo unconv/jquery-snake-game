@@ -59,8 +59,8 @@ h1 {
     border-radius: 50%;
     background: black;
     position: absolute;
-    top: 5px;
-    left: 5px;
+    bottom: 5px;
+    right: 5px;
 }
 
 .eye2 {
