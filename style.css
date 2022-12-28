@@ -1,0 +1,99 @@
+.game {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50% );
+    overflow: hidden;
+}
+
+.game-over {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba( 255, 0, 0, 0.8 );
+    color: #fff;
+    z-index: 999;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    margin: auto;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.play-again {
+    background: #fff;
+    color: #000;
+    padding: 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.score {
+    margin-bottom: 50px;
+}
+
+.snake, .tail, .food {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: red;
+    position: absolute;
+    display: none;
+}
+
+.eye1 {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: black;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.eye2 {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: black;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.food {
+    background: green;
+    display: block;
+}
+
+.current-score {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    background: #fff;
+    border: 1px solid black;
+    padding: 5px;
+    z-index: 1;
+}
+
+.current-highscore {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: #fff;
+    border: 1px solid black;
+    padding: 5px;
+    z-index: 1;
+}
